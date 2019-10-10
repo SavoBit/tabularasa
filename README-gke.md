@@ -23,7 +23,7 @@ terraform apply
 
 ## Example
 
-Below is an example with dummy values.
+Below is an example of a `main.tf` file on GKE.
 
 ```hcl
 terraform {

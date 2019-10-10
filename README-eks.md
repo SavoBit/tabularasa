@@ -23,7 +23,7 @@ terraform apply
 
 ## Example
 
-Create a folder like `production/eks` and create a `main.tf` as:
+Below is an example of a `main.tf` file on EKS.
 
 ```hcl
 module "aporeto-eks" {
