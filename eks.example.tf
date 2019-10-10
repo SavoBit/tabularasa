@@ -1,31 +1,3 @@
-# EKS
-
-Follow these steps to deploy the infrastructure that will hold the Aporeto Control Plane on EKS.
-
-## Steps
-
-1. Copy the [terraform script for EKS](eks.example.tf) into your `<voila-env>/platform/main.tf`
-2. Change the `<variable>` values
-3. Deploy the terraform script
-
-``` bash
-# Create a workspace for each locations
-terraform workspace new active
-terraform workspace new passive
-terraform workspace select active
-
-# Check deployment
-terraform plan
-
-# Run deployment (Takes about ~20 minutes)
-terraform apply
-```
-
-## Example
-
-Below is an example of a `main.tf` file on EKS.
-
-```hcl
 module "aporeto-eks" {
   source = "git::https://github.com/aporeto-inc/tabularasa//modules/aporeto-eks"
 
@@ -67,10 +39,10 @@ locals {
 
   tagss = {
     "active" = {
-      "owner" = "cyril"
+      "owner" = "<owner>"
     }
     "passive" = {
-      "owner" = "cyril"
+      "owner" = "<owner>"
     }
   }
 
@@ -82,4 +54,3 @@ locals {
   vpc_public_subnets_cidr  = "${lookup(local.vpc_public_subnets_cidrs, local.env)}"
   tags                     = "${lookup(local.tagss, local.env)}"
 }
-```

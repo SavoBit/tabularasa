@@ -1,44 +1,16 @@
-# GKE
-
-Follow these steps to deploy the infrastructure that will hold the Aporeto Control Plane on GKE.
-
-## Steps
-
-1. Copy the [terraform script for GKE](gke.example.tf) into your `<voila-env>/platform/main.tf`
-2. Change the `<variable>` values
-3. Deploy the terraform script
-
-``` bash
-# Create a workspace for each locations
-terraform workspace new active
-terraform workspace new passive
-terraform workspace select active
-
-# Check deployment
-terraform plan
-
-# Run deployment (Takes about ~20 minutes)
-terraform apply
-```
-
-## Example
-
-Below is an example of a `main.tf` file on GKE.
-
-```hcl
 terraform {
   backend "gcs" {
     # Name of the shared GCS bucket where to store the terraform states
-    bucket = "tf-states"
+    bucket = "<bucket name>"
     prefix = "production"
   }
 }
 
 provider "google" {
   # Path to your cloud provider's service account
-  credentials = "${file("~/.config/gcloud/application_default_credentials.json")}"
+  credentials = "${file("<path>")}"
   # Name of your cloud provider's project
-  project     = "demoproject"
+  project     = "<project>"
 }
 
 module "aporeto-gke" {
@@ -75,4 +47,3 @@ locals {
   disable_highwind_node_pool = "${lookup(local.without_highwind, local.env)}"
 
 }
-```
