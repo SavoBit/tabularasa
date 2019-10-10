@@ -1,8 +1,6 @@
-# Tabula rasa
+# GKE
 
-This repository contains a set of terraform modules for different provider aim to deploy infrastructure that will hold the control plane.
-
-They are grouped by providers.
+Follow these steps to deploy the infrastructure that will hold the Aporeto Control Plane on GKE.
 
 ## Steps
 
