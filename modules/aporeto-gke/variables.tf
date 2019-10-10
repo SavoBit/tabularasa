@@ -72,6 +72,28 @@ variable "disable_databases_node_pool" {
   description = "To disable databases node pool creation (usefull for a passive deployment)."
 }
 
+variable "max_nodes_mongodb" {
+  default     = 10
+  description = "max_nodes_mongodb is the maximum value for node autoscale."
+}
+
+variable "disable_mongodb_node_pool" {
+  default     = false
+  description = "To disable mongodb node pool creation (usefull for a passive deployment)."
+}
+
+
+variable "max_nodes_influxdb" {
+  default     = 10
+  description = "max_nodes_influxdb is the maximum value for node autoscale."
+}
+
+variable "disable_influxdb_node_pool" {
+  default     = false
+  description = "To disable influxdb node pool creation (usefull for a passive deployment)."
+}
+
+
 variable "max_nodes_services" {
   default     = 10
   description = "max_nodes_service is the maximum value for node autoscale."
@@ -81,7 +103,6 @@ variable "disable_services_node_pool" {
   default     = false
   description = "To disable services node pool creation (usefull for a passive deployment)."
 }
-
 
 variable "max_nodes_monitoring" {
   default     = 3

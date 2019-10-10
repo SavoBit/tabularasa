@@ -20,6 +20,120 @@ resource "google_container_cluster" "aporeto" {
 }
 
 
+resource "google_container_node_pool" "aporeto-mongodb-node-pool" {
+  count    = "${var.disable_mongodb_node_pool ? 0 : 1}"
+  name     = "mongodb"
+  location = "${var.location}"
+  cluster  = "${google_container_cluster.aporeto.name}"
+
+  node_count = 2
+
+  autoscaling {
+    min_node_count = 2
+    max_node_count = "${var.node_auto_scaling ? var.max_nodes_mongodb : 2}"
+  }
+
+  management {
+    auto_repair  = "${var.auto_repair}"
+    auto_upgrade = "${var.auto_upgrade}"
+  }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
+
+  node_config {
+
+
+    # TODO: Switch to ubuntu for XFS but require some changes
+    image_type   = "Ubuntu"
+    preemptible  = false
+    machine_type = "n1-standard-32"
+
+
+    metadata = {
+      disable-legacy-endpoints = "true"
+    }
+
+    labels = {
+      type = "mongodb"
+    }
+
+    service_account = "${var.service_account}"
+
+    tags = "${var.tags}"
+
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/service.management",
+      "https://www.googleapis.com/auth/servicecontrol",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
+  }
+}
+
+
+
+resource "google_container_node_pool" "aporeto-influxdb-node-pool" {
+  count    = "${var.disable_influxdb_node_pool ? 0 : 1}"
+  name     = "influxdb"
+  location = "${var.location}"
+  cluster  = "${google_container_cluster.aporeto.name}"
+
+  node_count = 2
+
+  autoscaling {
+    min_node_count = 2
+    max_node_count = "${var.node_auto_scaling ? var.max_nodes_influxdb : 2}"
+  }
+
+  management {
+    auto_repair  = "${var.auto_repair}"
+    auto_upgrade = "${var.auto_upgrade}"
+  }
+
+  timeouts {
+    create = "30m"
+    update = "30m"
+    delete = "30m"
+  }
+
+  node_config {
+
+
+    # TODO: Switch to ubuntu for XFS but require some changes
+    image_type   = "COS"
+    preemptible  = false
+    machine_type = "n1-standard-32"
+
+
+    metadata = {
+      disable-legacy-endpoints = "true"
+    }
+
+    labels = {
+      type = "influxdb"
+    }
+
+    service_account = "${var.service_account}"
+
+    tags = "${var.tags}"
+
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/service.management",
+      "https://www.googleapis.com/auth/servicecontrol",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
+  }
+}
+
 resource "google_container_node_pool" "aporeto-databases-node-pool" {
   count    = "${var.disable_databases_node_pool ? 0 : 1}"
   name     = "databases"
@@ -50,7 +164,7 @@ resource "google_container_node_pool" "aporeto-databases-node-pool" {
     # TODO: Switch to ubuntu for XFS but require some changes
     image_type   = "COS"
     preemptible  = false
-    machine_type = "n1-standard-16"
+    machine_type = "n1-standard-8"
 
 
     metadata = {
@@ -75,6 +189,7 @@ resource "google_container_node_pool" "aporeto-databases-node-pool" {
     ]
   }
 }
+
 
 resource "google_container_node_pool" "aporeto-services-node-pool" {
   count    = "${var.disable_services_node_pool ? 0 : 1}"

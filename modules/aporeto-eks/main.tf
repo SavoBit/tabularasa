@@ -71,8 +71,20 @@ module "eks" {
       asg_desired_capacity = 3
     },
     {
+      name                 = "${var.cluster_name}-mongodb"
+      instance_type        = "m5.8xlarge"
+      kubelet_extra_args   = "--node-labels=type=mongodb"
+      asg_desired_capacity = 3
+    },
+    {
+      name                 = "${var.cluster_name}-influxdb"
+      instance_type        = "m5.8xlarge"
+      kubelet_extra_args   = "--node-labels=type=influxdb"
+      asg_desired_capacity = 3
+    },
+    {
       name                 = "${var.cluster_name}-services"
-      instance_type        = "m4.2xlarge"
+      instance_type        = "m4.xlarge	"
       kubelet_extra_args   = "--node-labels=type=service"
       asg_desired_capacity = 3
     },
