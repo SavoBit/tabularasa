@@ -47,7 +47,6 @@ resource "google_container_node_pool" "aporeto-mongodb-node-pool" {
   node_config {
 
 
-    # TODO: Switch to ubuntu for XFS but require some changes
     image_type   = "Ubuntu"
     preemptible  = false
     machine_type = "n1-standard-32"
@@ -105,7 +104,6 @@ resource "google_container_node_pool" "aporeto-influxdb-node-pool" {
   node_config {
 
 
-    # TODO: Switch to ubuntu for XFS but require some changes
     image_type   = "COS"
     preemptible  = false
     machine_type = "n1-standard-32"
@@ -161,7 +159,6 @@ resource "google_container_node_pool" "aporeto-databases-node-pool" {
   node_config {
 
 
-    # TODO: Switch to ubuntu for XFS but require some changes
     image_type   = "COS"
     preemptible  = false
     machine_type = "n1-standard-8"
@@ -217,11 +214,10 @@ resource "google_container_node_pool" "aporeto-services-node-pool" {
 
   node_config {
 
-    # TODO: Switch to ubuntu for XFS but require some changes
     image_type = "COS"
 
     preemptible  = false
-    machine_type = "n1-standard-4"
+    machine_type = "n1-standard-32"
 
     metadata = {
       disable-legacy-endpoints = "true"
@@ -273,7 +269,6 @@ resource "google_container_node_pool" "aporeto-monitoring-node-pool" {
 
   node_config {
 
-    # TODO: Switch to ubuntu for XFS but require some changes
     image_type = "COS"
 
     preemptible  = false
@@ -329,7 +324,6 @@ resource "google_container_node_pool" "aporeto-highwind-node-pool" {
 
   node_config {
 
-    # TODO: Switch to ubuntu for XFS but require some changes
     image_type = "COS"
 
     preemptible  = false

@@ -84,7 +84,7 @@ module "eks" {
     },
     {
       name                 = "${var.cluster_name}-services"
-      instance_type        = "m4.xlarge	"
+      instance_type        = "m5.8xlarge"
       kubelet_extra_args   = "--node-labels=type=service"
       asg_desired_capacity = 3
     },
