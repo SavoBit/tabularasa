@@ -4,9 +4,17 @@ Follow these steps to deploy the infrastructure that will hold the Aporeto Contr
 
 ## Steps
 
-1. Copy the [terraform script for GKE](gke.example.tf) into your `<voila-env>/platform/main.tf`
-2. Change the `<variable>` values
-3. Deploy the terraform script
+1. Copy the [terraform template for GKE](gke.template.tf) into a file named `main.tf`
+2. Change the `<variable>` values:
+    * `<bucket>`: Name of the shared GCS bucket where to store the terraform states
+    * `<path>`: Path to your cloud provider's service account
+    * `<project>`: Name of your cloud provider's project
+3. Deploy the terraform script from the folder that contains your `main.tf`
+
+```bash
+# Initialize terraform
+terraform init
+```
 
 ``` bash
 # Create a workspace for each locations
