@@ -14,3 +14,10 @@ Starting Terraform interpolation syntax has changed starting version 0.12.
 Make sure you have an earlier version.
 
 Until we migrate these modules, we recommend using [Terraform 0.11.14](https://www.terraform.io/downloads.html).
+
+## Kubernetes requirements
+
+Before you proceed, make sure you have:
+
+* Authorizations to manage your Kubernetes infrastructure.
+* Quotas set to 800 in the region you deploy the control plane.
