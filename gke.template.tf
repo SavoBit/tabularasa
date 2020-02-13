@@ -7,6 +7,8 @@ terraform {
 }
 
 provider "google" {
+  # Specify google provider version
+  version = "~> 2.20.2"
   # Path to your cloud provider's service account
   credentials = "${file("<path>")}"
   # Name of your cloud provider's project
