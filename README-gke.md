@@ -2,6 +2,14 @@
 
 Follow these steps to deploy the infrastructure that will hold the Aporeto Control Plane on GKE.
 
+## Requirements
+
+You will need:
+
+* a GCS bucket where to store the terraform states
+* the path of your cloud provider's service account
+* The name of your cloud provider's project
+
 ## Steps
 
 1. Copy the [terraform template for GKE](gke.template.tf) into a file named `main.tf`
@@ -19,7 +27,6 @@ terraform init
 ``` bash
 # Create a workspace for each locations
 terraform workspace new active
-terraform workspace new passive
 terraform workspace select active
 
 # Check deployment
