@@ -15,33 +15,25 @@ locals {
   # Define our setups
   names = {
     "active"  = "production-west"
-    "passive" = "production-central"
   }
 
   regions = {
     "active"  = "us-west-2"
-    "passive" = "us-east-1"
   }
 
   vpc_cidrs = {
     "active"  = "10.0.0.0/16"
-    "passive" = "11.0.0.0/16"
   }
 
   vpc_private_subnets_cidrs = {
     "active" = ["10.0.1.0/24", "10.0.2.0/24"]
-    "pasive" = ["11.0.1.0/24", "11.0.2.0/24"]
   }
   vpc_public_subnets_cidrs = {
     "active" = ["10.1.1.0/24", "10.1.2.0/24"]
-    "pasive" = ["11.1.1.0/24", "11.1.2.0/24"]
   }
 
   tagss = {
     "active" = {
-      "owner" = "<owner>"
-    }
-    "passive" = {
       "owner" = "<owner>"
     }
   }

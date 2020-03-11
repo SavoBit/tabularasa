@@ -6,6 +6,7 @@ Follow these steps to deploy the infrastructure that will hold the Aporeto Contr
 
 You will need:
 
+* [Terraform 0.11.14](https://www.terraform.io/downloads.html)
 * a GCS bucket where to store the terraform states
 * the path of your cloud provider's service account
 * The name of your cloud provider's project
