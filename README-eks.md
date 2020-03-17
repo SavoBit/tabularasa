@@ -2,16 +2,24 @@
 
 Follow these steps to deploy the infrastructure that will hold the Aporeto Control Plane on EKS.
 
+* [Terraform 0.11.14](https://www.terraform.io/downloads.html)
+* EKS owner's name
+
 ## Steps
 
-1. Copy the [terraform script for EKS](eks.example.tf) into your `<voila-env>/platform/main.tf`
+1. Copy the [terraform template for EKS](eks.template.tf) into a file named `main.tf`
 2. Change the `<variable>` values
-3. Deploy the terraform script
+    * `<owner>`: Name of the owner
+3. Deploy the terraform script from the folder that contains your `main.tf`
+
+```bash
+# Initialize terraform
+terraform init
+```
 
 ``` bash
 # Create a workspace for each locations
 terraform workspace new active
-terraform workspace new passive
 terraform workspace select active
 
 # Check deployment
